@@ -1,0 +1,118 @@
+{
+  "name": "context-creator",
+  "publisher": "KavanBhavsar",
+  "displayName": "Context Creator",
+  "description": "Select files via checkboxes and generate a single output file for sharing context with AI tools or others !!",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "icon": "resources/logo.png",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KavanBhavsar35/context-creator.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Kavan Bhavsar",
+    "email": "kvbhavsar35@gmail.com"
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "context-creator",
+          "title": "Context Creator",
+          "icon": "resources/context-creator.svg"
+        }
+      ]
+    },
+    "views": {
+      "context-creator": [
+        {
+          "id": "contextCreatorView",
+          "name": "Files",
+          "type": "tree"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "contextCreator.generateFile",
+        "title": "Context Creator: Generate Context File",
+        "icon": "$(file-add)"
+      },
+      {
+        "command": "contextCreator.toggleAllFiles",
+        "title": "Context Creator: Toggle All Files",
+        "icon": "$(check-all)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "contextCreator.checkboxChanged",
+          "when": "false"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "contextCreator.generateFile",
+          "when": "view == contextCreatorView",
+          "group": "navigation"
+        },
+        {
+          "command": "contextCreator.toggleAllFiles",
+          "when": "view == contextCreatorView",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "keywords": [
+    "context",
+    "files",
+    "ai",
+    "documentation"
+  ],
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/KavanBhavsar35/context-creator",
+  "bugs": {
+    "url": "https://github.com/KavanBhavsar35/context-creator/issues"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "esbuild": "^0.24.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
