@@ -23,6 +23,62 @@
     "email": "kvbhavsar35@gmail.com"
   },
   "contributes": {
+    "configuration": {
+      "title": "Context Creator",
+      "properties": {
+        "contextCreator.exclude": {
+          "type": "array",
+          "default": [
+            "node_modules",
+            ".git",
+            "dist",
+            "build",
+            ".vscode"
+          ],
+          "description": "Patterns to exclude from the file tree"
+        },
+        "contextCreator.persistState": {
+          "type": "boolean",
+          "default": true,
+          "description": "Save checkbox states between sessions"
+        },
+        "contextCreator.maxFileSizeWarningKB": {
+          "type": "number",
+          "default": 500,
+          "description": "Show warning when selecting files larger than this size (in KB)"
+        },
+        "contextCreator.outputFormat": {
+          "type": "object",
+          "default": {
+            "fileHeaderFormat": "// File: {filePath}",
+            "fileSeparator": "\n\n",
+            "extension": "txt"
+          },
+          "description": "Customize the output file format",
+          "properties": {
+            "fileHeaderFormat": {
+              "type": "string",
+              "description": "Header format for each file. Use {filePath} as placeholder for file path"
+            },
+            "fileSeparator": {
+              "type": "string",
+              "description": "Separator between files in the output"
+            },
+            "extension": {
+              "type": "string",
+              "enum": [
+                "txt",
+                "md",
+                "js",
+                "ts",
+                "json"
+              ],
+              "description": "Output file extension"
+            }
+          }
+        }
+      }
+    },
     "viewsContainers": {
       "activitybar": [
         {
@@ -35,6 +91,7 @@
     "views": {
       "context-creator": [
         {
+          "icon": "resources/context-creator.svg",
           "id": "contextCreatorView",
           "name": "Files",
           "type": "tree"
@@ -44,13 +101,27 @@
     "commands": [
       {
         "command": "contextCreator.generateFile",
-        "title": "Context Creator: Generate Context File",
-        "icon": "$(file-add)"
+        "title": "Generate Context File",
+        "icon": "$(output)"
       },
       {
         "command": "contextCreator.toggleAllFiles",
-        "title": "Context Creator: Toggle All Files",
-        "icon": "$(check-all)"
+        "title": "Toggle All Files",
+        "icon": "$(checklist)"
+      },
+      {
+        "command": "contextCreator.refresh",
+        "title": "Refresh File List",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "contextCreator.checkboxChanged",
+        "title": "Toggle Checkbox"
+      },
+      {
+        "command": "contextCreator.searchFiles",
+        "title": "Search Files",
+        "icon": "$(search)"
       }
     ],
     "menus": {
@@ -58,18 +129,44 @@
         {
           "command": "contextCreator.checkboxChanged",
           "when": "false"
+        },
+        {
+          "command": "contextCreator.generateFile",
+          "when": "view == contextCreatorView"
+        },
+        {
+          "command": "contextCreator.toggleAllFiles",
+          "when": "view == contextCreatorView"
+        },
+        {
+          "command": "contextCreator.refresh",
+          "when": "view == contextCreatorView"
+        },
+        {
+          "command": "contextCreator.searchFiles",
+          "when": "view == contextCreatorView"
         }
       ],
       "view/title": [
         {
           "command": "contextCreator.generateFile",
           "when": "view == contextCreatorView",
-          "group": "navigation"
+          "group": "navigation@1"
         },
         {
           "command": "contextCreator.toggleAllFiles",
           "when": "view == contextCreatorView",
-          "group": "navigation"
+          "group": "navigation@2"
+        },
+        {
+          "command": "contextCreator.refresh",
+          "when": "view == contextCreatorView",
+          "group": "navigation@3"
+        },
+        {
+          "command": "contextCreator.searchFiles",
+          "when": "view == contextCreatorView",
+          "group": "navigation@4"
         }
       ]
     }
