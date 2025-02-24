@@ -3,7 +3,7 @@
   "publisher": "KavanBhavsar",
   "displayName": "Context Creator",
   "description": "Select files via checkboxes and generate a single output file for sharing context with AI tools or others !!",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.96.0"
   },
