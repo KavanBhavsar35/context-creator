@@ -177,10 +177,6 @@
     "ai",
     "documentation"
   ],
-  "galleryBanner": {
-    "color": "#C80000",
-    "theme": "dark"
-  },
   "homepage": "https://github.com/KavanBhavsar35/context-creator",
   "bugs": {
     "url": "https://github.com/KavanBhavsar35/context-creator/issues"
