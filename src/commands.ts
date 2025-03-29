@@ -9,9 +9,11 @@ export function registerCommands(
   treeView: vscode.TreeView<FileItem>
 ) {
   context.subscriptions.push(
-    treeView.onDidChangeCheckboxState(evt =>
-      evt.items.forEach(([item]) => provider.toggleCheck(item))
-    ),
+    treeView.onDidChangeCheckboxState(evt => {
+      for (const [item] of evt.items) {
+        provider.toggleCheck(item);
+      }
+    }),
 
     vscode.commands.registerCommand('contextCreator.refresh', () => provider.refresh()),
     vscode.commands.registerCommand('contextCreator.generateFile', () => provider.generateFile()),

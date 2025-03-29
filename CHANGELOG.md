@@ -4,7 +4,17 @@ All notable changes to the "context-creator" extension will be documented in thi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [0.0.2] - 2025-02-24
+## [1.1.0] - 2025-03-29
+
+### Added
+- **Manual Selection Persistence**: Files manually unchecked now stay unchecked when parent folder is rechecked
+- **Improved Toggle Logic**: Better parent-child synchronization when checking/unchecking
+
+### Fixed
+- Fixed folder checking re-enabling manually unchecked files
+- Improved code formatting and documentation
+
+## [1.0.1] - 2025-02-24
 
 ### Added
 - **File Icons**: Added icons for files and folders based on file type.
@@ -32,7 +42,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ---
 
-## [0.0.1] - Initial Release
+## [1.0.0] - Initial Release
 
 - **Tree View**: Display workspace files with checkbox support.
 - **File Selection**: Toggle individual or all files.
